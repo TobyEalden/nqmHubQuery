@@ -1,4 +1,5 @@
 {
+  "rootURL": "http://localhost:3104/v1",
   "eventBus": {
     "port": 2022,
     "host": "localhost"

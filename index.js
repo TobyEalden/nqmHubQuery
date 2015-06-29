@@ -9,14 +9,8 @@
   var Promise = require("bluebird");
   var config = require("./config.json");
   var eventBus = require("./lib/busClient").EventBus;
-
-  var DatasetProjection = require("./lib/projections/datasetProjection").Projection;
-  var IOTHubProjection = require("./lib/projections/iotHubProjection").Projection;
-  var IOTFeedProjection = require("./lib/projections/iotFeedProjection").Projection;
-
-  var datasetProj = new DatasetProjection();
-  var iotHubProj = new IOTHubProjection();
-  var iotFeedProj = new IOTFeedProjection();
+  var projections = require("./lib/projections");
+  var QueryListener = require("./lib/httpQueryListener").Listener;
 
   var mongoose = require("mongoose");
   Promise.promisifyAll(mongoose);
@@ -27,11 +21,12 @@
     throw err;
   });
 
+  var queryListener = new QueryListener(config.httpQueryListener);
+
   db.once("open", function() {
     eventBus
-      .then(function() { return iotHubProj.start(); })
-      .then(function() { return iotFeedProj.start(); })
-      .then(function() { return datasetProj.start(); })
+      .then(function() { return projections.start(); })
+      .then(function() { return queryListener.start(); })
       .catch(function(err) {
         log("fatal error: %s",err.message);
         throw err;
