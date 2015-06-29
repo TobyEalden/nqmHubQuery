@@ -1,0 +1,12 @@
+{
+  "eventBus": {
+    "port": 2022,
+    "host": "localhost"
+  },
+  "db": {
+    "url": "mongodb://localhost/nqmRead"
+  },
+  "httpQueryListener": {
+    "port": 3104
+  }
+}
