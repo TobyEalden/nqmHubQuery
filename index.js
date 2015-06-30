@@ -29,7 +29,7 @@
       .then(function() { return queryListener.start(config.httpQueryListener); })
       .catch(function(err) {
         log("fatal error: %s",err.message);
-        throw err;
+        process.exit();
       });
   });
 
