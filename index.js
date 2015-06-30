@@ -5,7 +5,8 @@
 "use strict";
 
 (function() {
-  var log = require("debug")("index");
+  var log = require("debug")("nqmQueryHub:index");
+  var errLog = require("debug")("nqmQueryHub:error");
   var Promise = require("bluebird");
   var config = require("./config.json");
   var eventBus = require("./lib/eventBusClient");
@@ -18,7 +19,7 @@
 
   var db = mongoose.connect(config.db.url).connection;
   db.on("error", function(err) {
-    log("failed to connect to database at %s [%s]",config.db.url, err.message);
+    errLog("failed to connect to database at %s [%s]",config.db.url, err.message);
     throw err;
   });
 
@@ -28,8 +29,8 @@
       .then(function() { return projections.start(); })
       .then(function() { return queryListener.start(config.httpQueryListener); })
       .catch(function(err) {
-        log("fatal error: %s",err.message);
-        log(err.stack);
+        errLog("fatal error: %s",err.message);
+        errLog(err.stack);
         process.exit();
       });
   });
