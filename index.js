@@ -8,9 +8,10 @@
   var log = require("debug")("index");
   var Promise = require("bluebird");
   var config = require("./config.json");
-  var eventBus = require("./lib/busClient").EventBus;
+  var eventBus = require("./lib/eventBusClient");
   var projections = require("./lib/projections");
   var QueryListener = require("./lib/httpQueryListener").Listener;
+  var queryListener = new QueryListener();
 
   var mongoose = require("mongoose");
   Promise.promisifyAll(mongoose);
@@ -21,12 +22,11 @@
     throw err;
   });
 
-  var queryListener = new QueryListener(config.httpQueryListener);
 
   db.once("open", function() {
-    eventBus
+    eventBus.start(config.eventBus)
       .then(function() { return projections.start(); })
-      .then(function() { return queryListener.start(); })
+      .then(function() { return queryListener.start(config.httpQueryListener); })
       .catch(function(err) {
         log("fatal error: %s",err.message);
         throw err;
