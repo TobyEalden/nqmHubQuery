@@ -9,6 +9,7 @@
   "author": "toby.ealden@gmail.com",
   "license": "ISC",
   "dependencies": {
+    "JSONPath": "^0.10.0",
     "bluebird": "^2.9.30",
     "debug": "^2.2.0",
     "eventemitter2": "^0.4.14",
