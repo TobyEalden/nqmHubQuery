@@ -23,11 +23,10 @@
     throw err;
   });
 
-
   db.once("open", function() {
     eventBus.start(config.eventBus)
-      .then(function() { return projections.start(); })
       .then(function() { return queryListener.start(config.httpQueryListener); })
+      .then(function() { return projections.start(); })
       .catch(function(err) {
         errLog("fatal error: %s",err.message);
         errLog(err.stack);
