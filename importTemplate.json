@@ -1,5 +1,5 @@
 {
-  "commandHost": "http://localhost:3102",
+  "commandHost": "http://cmd.nqminds.com",
   "targetDataset": {},
   "schemaMapping": [ "<insert schema mappings>" ],
   "sourceUrl": "<insert source url>",
