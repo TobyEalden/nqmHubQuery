@@ -1,0 +1,13 @@
+{
+  "commandHost": "http://localhost:3102",
+  "targetDataset": {},
+  "schemaMapping": [ "<insert schema mappings>" ],
+  "sourceUrl": "<insert source url>",
+  "processingMode": "localStream",
+  "delimiter": ",",
+  "encoding": "utf8",
+  "startLine": 1,
+  "endLine": -1,
+  "throttleRate": 30000,
+  "bulkMode": true
+}
