@@ -9,10 +9,10 @@
   "author": "toby.ealden@gmail.com",
   "license": "ISC",
   "dependencies": {
-    "JSONPath": "^0.10.0",
     "bluebird": "^2.9.30",
     "debug": "^2.2.0",
     "eventemitter2": "^0.4.14",
+    "json-pointer": "^0.3.0",
     "lodash": "^3.9.3",
     "mongoose": "^4.0.6",
     "restify": "^3.0.3",
