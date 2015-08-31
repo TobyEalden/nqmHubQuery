@@ -9,5 +9,6 @@
   },
   "httpQueryListener": {
     "port": 3104
-  }
+  },
+  "toolboxURL": "http://localhost:2222/"
 }
