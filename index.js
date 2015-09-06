@@ -13,6 +13,7 @@
   var projections = require("./lib/projections");
   var QueryListener = require("./lib/httpQueryListener").Listener;
   var queryListener = new QueryListener();
+  var housekeeping = require("./lib/houseKeeping");
 
   var mongoose = require("mongoose");
   Promise.promisifyAll(mongoose);
@@ -27,6 +28,7 @@
     eventBus.start(config.eventBus)
       .then(function() { return queryListener.start(config.httpQueryListener); })
       .then(function() { return projections.start(); })
+      .then(function() { housekeeping.start(); return Promise.resolve(); })
       .catch(function(err) {
         errLog("fatal error: %s",err.message);
         errLog(err.stack);

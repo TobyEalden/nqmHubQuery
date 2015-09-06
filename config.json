@@ -10,5 +10,8 @@
   "httpQueryListener": {
     "port": 3104
   },
-  "toolboxURL": "http://localhost:2222/"
+  "toolboxURL": "http://localhost:2222/",
+  "houseKeeping": {
+    "highFrequencyTimer": 60000
+  }
 }
