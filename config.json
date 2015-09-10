@@ -5,7 +5,7 @@
     "host": "localhost"
   },
   "db": {
-    "url": "mongodb://localhost/nqmRead"
+    "url": "mongodb://localhost/nqmRestore"
   },
   "httpQueryListener": {
     "port": 3104
