@@ -16,6 +16,7 @@
     "json-pointer": "^0.3.0",
     "lodash": "^3.9.3",
     "mongoose": "^4.0.6",
+    "nqm-read-model": "git+ssh://git@github.com/nqminds/nqm-read-model.git",
     "passport": "^0.3.0",
     "passport-http-bearer": "^1.0.1",
     "restify": "^3.0.3",
