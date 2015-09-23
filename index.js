@@ -5,15 +5,12 @@
 "use strict";
 
 (function() {
-  var log = require("debug")("nqmQueryHub:index");
-  var errLog = require("debug")("nqmQueryHub:error");
+  var log = require("debug")("nqm-query:index");
+  var errLog = require("debug")("nqm-query:error");
   var Promise = require("bluebird");
   var config = require("./config.json");
-  var eventBus = require("./lib/eventBusClient");
-  var projections = require("./lib/projections");
-//  var QueryListener = require("./lib/httpQueryListener").Listener;
-//  var queryListener = new QueryListener();
-  var housekeeping = require("./lib/houseKeeping");
+  var QueryListener = require("./lib/httpQueryListener").Listener;
+  var queryListener = new QueryListener();
 
   var mongoose = require("mongoose");
   Promise.promisifyAll(mongoose);
@@ -25,10 +22,8 @@
   });
 
   db.once("open", function() {
-    eventBus.start(config.eventBus)
-//      .then(function() { return queryListener.start(config.httpQueryListener); })
-      .then(function() { return projections.start(); })
-      .then(function() { housekeeping.start(); return Promise.resolve(); })
+      log("database connected");
+      queryListener.start(config.httpQueryListener)
       .catch(function(err) {
         errLog("fatal error: %s",err.message);
         errLog(err.stack);

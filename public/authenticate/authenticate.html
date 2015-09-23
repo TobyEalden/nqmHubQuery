@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script>
+    function loaded() {
+      var q = window.location.search.substring(1);
+      var rurl = q.split("=")[1];
+      document.getElementById("google-rurl").value = rurl;
+      document.getElementById("facebook-rurl").value = rurl;
+    }
+
+    window.onload = loaded;
+  </script>
+</head>
+<body>
+  <form action="/auth/google" method="GET">
+    <input type="submit" value="login with google" />
+    <input type="hidden" name="rurl" id="google-rurl" />
+  </form>
+  <form action="/auth/facebook" method="GET">
+    <input type="submit" value="login with facebook" />
+    <input type="hidden" name="rurl" id="facebook-rurl" />
+  </form>
+</body>
+</html>

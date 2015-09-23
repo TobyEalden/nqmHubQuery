@@ -1,17 +1,10 @@
 {
   "rootURL": "http://localhost:3104/v1",
-  "eventBus": {
-    "port": 2022,
-    "host": "localhost"
-  },
   "db": {
-    "url": "mongodb://localhost/nqmClean"
+    "url": "mongodb://localhost:27017/nqmClean"
   },
   "httpQueryListener": {
     "port": 3104
   },
-  "toolboxURL": "http://localhost:2222",
-  "houseKeeping": {
-    "highFrequencyTimer": 60000
-  }
+  "toolboxURL": "http://localhost:2222"
 }
