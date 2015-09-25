@@ -11,11 +11,14 @@
   var config = require("./config.json");
   var QueryListener = require("./lib/httpQueryListener").Listener;
   var queryListener = new QueryListener();
+  var authServer = require("./lib/authServer");
+  var readModels = require("nqm-read-model");
+  var _models;
 
   var mongoose = require("mongoose");
   Promise.promisifyAll(mongoose);
 
-  var db = mongoose.connect(config.db.url).connection;
+  var db = mongoose.createConnection(config.db.url);
   db.on("error", function(err) {
     errLog("failed to connect to database at %s [%s]",config.db.url, err.message);
     throw err;
@@ -23,12 +26,16 @@
 
   db.once("open", function() {
       log("database connected");
-      queryListener.start(config.httpQueryListener)
-      .catch(function(err) {
-        errLog("fatal error: %s",err.message);
-        errLog(err.stack);
-        process.exit();
-      });
+      _models = readModels(db);
+      authServer.start(config.authServer)
+        .then(function() {
+          return queryListener.start(config.httpQueryListener, _models)
+        })
+        .catch(function(err) {
+          errLog("fatal error: %s",err.message);
+          errLog(err.stack);
+          process.exit();
+        });
   });
 
 }());

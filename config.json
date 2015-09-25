@@ -6,5 +6,11 @@
   "httpQueryListener": {
     "port": 3104
   },
-  "toolboxURL": "http://localhost:2222"
+  "toolboxURL": "http://localhost:2222",
+  "authServer": {
+    "db": {
+      "url": "mongodb://localhost/nqmClean"
+    },
+    "authKey": "KHkt2hQfKwJsF96k0sv5AqlkY0Uz/A5uqKtYXZ2c5+g="
+  }
 }
