@@ -13,8 +13,6 @@
     "moment": "^2.10.6",
     "passport": "^0.3.0",
     "passport-google-oauth": "^0.2.0",
-    "passport-http-bearer": "^1.0.1",
-    "request": "^2.63.0",
-    "restify": "^4.0.3",
+    "passport-http-bearer": "^1.0.1",    
   }
 }
