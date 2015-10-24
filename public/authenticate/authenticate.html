@@ -3,25 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <title></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
   <script>
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+        return results === null ? "" : (results[1].replace(/\+/g, " "));
+    }
     function loaded() {
-      var q = window.location.search.substring(1);
-      var rurl = q.split("=")[1];
+      var rurl = getParameterByName("rurl");
       document.getElementById("google-rurl").value = rurl;
       document.getElementById("facebook-rurl").value = rurl;
     }
-
     window.onload = loaded;
   </script>
+  <style>
+      html,body {
+          padding: 0;
+          margin: 0;
+          height: 100%;
+      }
+      body {
+          display: flex;
+          justify-content: center;
+          align-content: center;
+          align-items: center;
+      }  
+      .cell {
+          flex: 0 1 auto;           
+      }
+  </style>
 </head>
 <body>
-  <form action="/auth/google" method="GET">
-    <input type="submit" value="login with google" />
+  <div class="cell"></div>
+  <form class="cell" action="/auth/google" method="GET">
     <input type="hidden" name="rurl" id="google-rurl" />
+      <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+              <span class="card-title">nquireTDX</span>
+              <p>Authentication required.</p>
+          </div>
+          <div class="card-action center">
+              <button class="btn waves-effect waves-light" type="submit" name="action">use Google identity</button>
+          </div>
+      </div>
   </form>
-  <form action="/auth/facebook" method="GET">
-    <input type="submit" value="login with facebook" />
-    <input type="hidden" name="rurl" id="facebook-rurl" />
-  </form>
+  <div class="cell"></div>
+  <!--<form action="/auth/facebook" method="GET">-->
+    <!--<input type="submit" value="login with facebook" />-->
+    <!--<input type="hidden" name="rurl" id="facebook-rurl" />-->
+  <!--</form>-->
 </body>
 </html>
