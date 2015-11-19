@@ -1,6 +1,6 @@
 {
   "db": {
-    "url": "mongodb://localhost:27017/nqmDerive"
+    "url": "mongodb://localhost:27017/nqmQuery2"
   },
   "httpQueryListener": {
     "rootURL": "http://localhost:3104/v1",
@@ -8,9 +8,6 @@
   },
   "toolboxURL": "http://localhost:2222",
   "authServer": {
-    "db": {
-      "url": "mongodb://localhost/nqmDerive"
-    },
     "authKey": "KHkt2hQfKwJsF96k0sv5AqlkY0Uz/A5uqKtYXZ2c5+g="
   }
 }
