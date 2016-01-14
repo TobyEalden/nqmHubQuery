@@ -1,6 +1,6 @@
 {
   "db": {
-    "url": "mongodb://localhost:27017/nqmQuery2"
+    "url": "mongodb://localhost:27017/nqmQuery"
   },
   "httpQueryListener": {
     "rootURL": "http://localhost:3104/v1",
